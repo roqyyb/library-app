@@ -6,6 +6,11 @@
   margin: 0;
 }
 
+table,
+tr > * {
+  border: 1px solid;
+}
+
 h1,
 h2,
 h3,
@@ -38,4 +43,53 @@ textarea,
 legend {
   font-size: 100%;
   font-family: inherit;
+}
+
+/* Styles */
+main {
+  padding-top: 3rem;
+}
+main h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+.library {
+  max-width: 900px;
+  padding: 2rem;
+  border: 1px dotted;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.library img {
+  height: 300px;
+  width: 200px;
+  object-fit: contain;
+}
+.library h4 {
+  margin-bottom: 0.2rem;
+}
+#add-new {
+  text-align: center;
+  margin: 1rem;
+}
+#add-new button {
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: coral;
+  color: white;
+}
+
+#add-new button:hover,
+#add-new button:focus {
+  background-color: rgb(185, 76, 36);
+}
+span.red {
+  color: red;
+}
+span.green {
+  color: green;
 }
