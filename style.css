@@ -1,0 +1,41 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+ul {
+  list-style: none;
+}
+
+form {
+  margin: 0 auto;
+  width: min(30em, 90%);
+  line-height: 1.2;
+}
+
+input,
+button,
+label,
+select,
+textarea,
+legend {
+  font-size: 100%;
+  font-family: inherit;
+}
