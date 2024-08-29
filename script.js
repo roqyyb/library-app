@@ -39,7 +39,7 @@ function addBookToLibrary(book) {
   books.push(book);
 }
 
-function displayBook(books) {
+function displayBook(input) {
   const library = document.querySelector(".library");
   library.innerHTML = "";
 
@@ -47,7 +47,7 @@ function displayBook(books) {
     library.innerHTML = `<h2>Empty!</h2>`;
   }
 
-  books.forEach((book, index) => {
+  input.forEach((book, index) => {
     const bookCard = document.createElement("article");
     bookCard.setAttribute("id", index);
 
@@ -85,7 +85,8 @@ function displayBook(books) {
         }
         return b;
       });
-      displayBook(modifiedBooks);
+      books = modifiedBooks;
+      displayBook(books);
     });
 
     const deleteBookBtn = document.createElement("button");
@@ -94,8 +95,8 @@ function displayBook(books) {
 
     deleteBookBtn.addEventListener("click", () => {
       const filteredBooks = books.filter((b) => b.title != book.title);
-      console.log(filteredBooks);
-      displayBook(filteredBooks);
+      books = filteredBooks;
+      displayBook(books);
     });
 
     bookCard.appendChild(bookControls);
@@ -127,7 +128,6 @@ document.addEventListener("submit", (event) => {
 
   const newBook = new Book(title, author, pages);
 
-  //   books = [];
   books.push(newBook);
   displayBook(books);
 
