@@ -45,6 +45,20 @@ legend {
   font-family: inherit;
 }
 
+input {
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+}
+label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.form-control + .form-control {
+  margin-top: 0.5rem;
+}
+
 /* Styles */
 main {
   padding-top: 3rem;
@@ -60,6 +74,7 @@ main h1 {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
 }
 .library img {
   height: 300px;
@@ -91,5 +106,42 @@ span.red {
   color: red;
 }
 span.green {
+  color: green;
+}
+
+/* dialog */
+dialog {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 400px;
+  padding: 1rem 2rem;
+}
+dialog::backdrop {
+  background-color: black;
+  opacity: 0.7;
+}
+dialog h5 {
+  text-align: center;
+  text-transform: uppercase;
+  color: green;
+}
+dialog form {
+  margin: 0;
+  width: 100%;
+}
+dialog .buttons {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+dialog button {
+  padding: 0.5rem;
+}
+dialog button#close {
+  color: red;
+  margin-right: 0.2rem;
+}
+dialog button#submit {
   color: green;
 }

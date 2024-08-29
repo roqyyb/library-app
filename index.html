@@ -9,6 +9,30 @@
   </head>
   <body>
     <main>
+      <dialog>
+        <h5>Add a new book</h5>
+        <form>
+          <div class="form-control">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required />
+          </div>
+
+          <div class="form-control">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required />
+          </div>
+
+          <div class="form-control">
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" name="pages" required />
+          </div>
+
+          <div class="buttons">
+            <button formnovalidate formmethod="dialog" id="close">Close</button>
+            <button type="submit" id="submit">Submit Book</button>
+          </div>
+        </form>
+      </dialog>
       <h1>Mini Library</h1>
       <div class="library"></div>
       <div id="add-new">

@@ -1,4 +1,4 @@
-const books = [
+let books = [
   {
     title: "Gifted Hands",
     author: "Ben Carson",
@@ -26,10 +26,13 @@ function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.isRead = false;
+  this.url = "https://m.media-amazon.com/images/I/71-EPF9XllL._SL1500_.jpg";
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(book) {
   // do stuff here
+  books.push(book);
 }
 
 function displayBook() {
@@ -58,5 +61,35 @@ function displayBook() {
     library.appendChild(bookCard);
   });
 }
-
 displayBook();
+
+const dialog = document.querySelector("dialog");
+const showBtn = document.querySelector("#add-new>button");
+showBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+document.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const modalForm = document.querySelector("dialog form");
+  const formData = new FormData(modalForm);
+
+  const title = formData.get("title");
+  const author = formData.get("author");
+  const pages = formData.get("pages");
+
+  if (!title || !author || !pages) {
+    dialog.close();
+    return;
+  }
+
+  const newBook = new Book(title, author, pages);
+
+  books = [];
+  books.push(newBook);
+  displayBook();
+
+  modalForm.reset();
+
+  dialog.close();
+});
