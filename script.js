@@ -30,16 +30,26 @@ function Book(title, author, pages) {
   this.url = "https://m.media-amazon.com/images/I/71-EPF9XllL._SL1500_.jpg";
 }
 
+Book.prototype.toggleRead = function () {
+  this.isRead = !this.isRead;
+};
+
 function addBookToLibrary(book) {
   // do stuff here
   books.push(book);
 }
 
-function displayBook() {
+function displayBook(books) {
   const library = document.querySelector(".library");
+  library.innerHTML = "";
 
-  books.forEach((book) => {
+  if (books.length === 0) {
+    library.innerHTML = `<h2>Empty!</h2>`;
+  }
+
+  books.forEach((book, index) => {
     const bookCard = document.createElement("article");
+    bookCard.setAttribute("id", index);
 
     const bookImage = document.createElement("img");
     bookImage.setAttribute("src", book.url);
@@ -58,10 +68,42 @@ function displayBook() {
     }`;
     bookCard.appendChild(bookStatus);
 
+    const bookControls = document.createElement("div");
+    bookControls.style.display = "flex";
+    bookControls.style.gap = "10px";
+    bookControls.style.marginTop = "10px";
+
+    const toggleReadBtn = document.createElement("button");
+    toggleReadBtn.textContent = "Toggle Read";
+    bookControls.appendChild(toggleReadBtn);
+
+    toggleReadBtn.addEventListener("click", () => {
+      const modifiedBooks = books.map((b) => {
+        if (b.title === book.title) {
+          return { ...book, isRead: !book.isRead };
+          //   b.toggleRead();
+        }
+        return b;
+      });
+      displayBook(modifiedBooks);
+    });
+
+    const deleteBookBtn = document.createElement("button");
+    deleteBookBtn.textContent = "Delete";
+    bookControls.appendChild(deleteBookBtn);
+
+    deleteBookBtn.addEventListener("click", () => {
+      const filteredBooks = books.filter((b) => b.title != book.title);
+      console.log(filteredBooks);
+      displayBook(filteredBooks);
+    });
+
+    bookCard.appendChild(bookControls);
+
     library.appendChild(bookCard);
   });
 }
-displayBook();
+displayBook(books);
 
 const dialog = document.querySelector("dialog");
 const showBtn = document.querySelector("#add-new>button");
@@ -85,9 +127,9 @@ document.addEventListener("submit", (event) => {
 
   const newBook = new Book(title, author, pages);
 
-  books = [];
+  //   books = [];
   books.push(newBook);
-  displayBook();
+  displayBook(books);
 
   modalForm.reset();
 
