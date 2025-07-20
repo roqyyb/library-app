@@ -22,17 +22,19 @@ let books = [
   },
 ];
 
-function Book(title, author, pages) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = false;
-  this.url = "https://m.media-amazon.com/images/I/71-EPF9XllL._SL1500_.jpg";
-}
+class Book{
+  constructor(title, author, pages){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = false;
+    this.url = "https://m.media-amazon.com/images/I/71-EPF9XllL._SL1500_.jpg";
+  }
 
-Book.prototype.toggleRead = function () {
-  this.isRead = !this.isRead;
-};
+  toggleRead(){
+    this.isRead = !this.isRead;
+  }
+}
 
 function addBookToLibrary(book) {
   // do stuff here
